@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Valentine?</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: #ffe6eb;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .container {
+            position: relative;
+            width: 600px;
+            height: 200px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #yesBtn {
+            margin-right: 40px;
+        }
+
+        #noBtn {
+            position: absolute;
+            left: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Will you be my Valentine? 💖</h1>
+
+    <div class="container">
+        <button id="yesBtn" onclick="alert('Yayyy! 💕')">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+
+    <script>
+        document.getElementById("noBtn").addEventListener("mouseenter", run);
+
+        function run() {
+            var btn = document.getElementById("noBtn");
+
+            if (!btn.style.left) {
+                btn.style.left = "300px";
+            } else {
+                var posLeft = parseInt(btn.style.left);
+
+                if (posLeft >= 450) {
+                    btn.style.left = "50px";
+                } else {
+                    posLeft += 150;
+                    btn.style.left = posLeft + "px";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
