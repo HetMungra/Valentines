@@ -36,7 +36,7 @@
 
         #noBtn {
             position: absolute;
-            left: 300px;
+           
         }
     </style>
 </head>
@@ -50,26 +50,21 @@
     </div>
 
     <script>
-        document.getElementById("noBtn").addEventListener("mouseover", run);
+ 
+    const btn = document.getElementById("noBtn");
 
-        function run() {
-            var btn = document.getElementById("noBtn");
+    btn.addEventListener("mouseover", () => {
+        const container = document.querySelector(".container");
+        const maxX = container.clientWidth - btn.offsetWidth;
+        const maxY = container.clientHeight - btn.offsetHeight;
 
-            if (!btn.style.left) {
-                btn.style.left = "300px";
-            } else {
-                var posLeft = parseInt(btn.style.left);
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
 
-                if (posLeft >= 450) {
-                    btn.style.left = "50px";
-                } else {
-                    posLeft += 150;
-                    btn.style.left = posLeft + "px";
-                }
-            }
-        }
+        btn.style.left = x + "px";
+        btn.style.top = y + "px";
+    });
     </script>
 
 </body>
 </html>
-
