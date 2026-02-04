@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>How Much Do You Like Me?</title>
+
+<style>
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffe6f0, #ffe6eb);
+    text-align: center;
+    overflow: hidden;
+}
+
+input[type="range"] {
+    width: 300px;
+}
+
+#value {
+    font-size: 24px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 22px;
+    display: none;
+    color: #e60073;
+}
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+    }
+}
+</style>
+</head>
+<body>
+
+<h1>How much do you like me? 😌</h1>
+
+<input type="range" min="0" max="100" value="80" id="slider">
+<div id="value">80%</div>
+<div id="message"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const slider = document.getElementById("slider");
+    const valueText = document.getElementById("value");
+    const message = document.getElementById("message");
+
+    slider.addEventListener("input", function () {
+        valueText.innerText = slider.value + "%";
+    });
+
+    slider.addEventListener("change", function () {
+
+        if (slider.value < 80) {
+
+            message.innerText = "Ohh come on JS 😭 Etloy Kharab Nathi Hu";
+            message.style.display = "block";
+
+            let current = parseInt(slider.value);
+
+            let interval = setInterval(() => {
+                if (current >= 80) {
+                    clearInterval(interval);
+                } else {
+                    current++;
+                    slider.value = current;
+                    valueText.innerText = current + "%";
+                }
+            }, 15);
+
+        } 
+        else if (slider.value == 100) {
+
+            message.innerText = "I knew it 😏💖";
+            message.style.display = "block";
+            showConfetti();
+
+        } 
+        else {
+            message.style.display = "none";
+        }
+    });
+
+    function showConfetti() {
+        for (let i = 0; i < 80; i++) {
+            const confetti = document.createElement("div");
+            confetti.classList.add("confetti");
+            confetti.style.left = Math.random() * 100 + "vw";
+            confetti.style.backgroundColor =
+                "hsl(" + Math.random() * 360 + ", 100%, 50%)";
+            confetti.style.animationDuration =
+                (Math.random() * 2 + 2) + "s";
+
+            document.body.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 3000);
+        }
+    }
+
+});
+</script>
+
+</body>
+</html>
